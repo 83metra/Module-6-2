@@ -5,7 +5,7 @@ class Vehicle:
         self.owner = owner     # владелец транспорта.(владелец может меняться)
         self.__model = model  # модель(марка) транспорта. (мы не можем менять название модели)
         self.__engine_power = e_p # мощность двигателя. (мы не можем менять мощность двигателя самостоятельно)
-        self._color = color #  название цвета. (мы не можем менять цвет автомобиля своими руками)
+        self.__color = color #  название цвета. (мы не можем менять цвет автомобиля своими руками)
 
     def get_owner(self):
         return f'Владелец: {self.owner}'
@@ -17,7 +17,7 @@ class Vehicle:
         return f'Мощность двигателя: {self.__engine_power}'
 
     def get_color(self):
-        return f'Цвет: {self._color}'
+        return f'Цвет: {self.__color}'
 
     def print_info(self):
         print(f'{self.get_model()}\n{self.get_horsepower()}\n{self.get_color()}\n{self.get_owner()}')
@@ -26,14 +26,16 @@ class Vehicle:
         help_list = []
         for farbe in self.__COLOR_VARIANTS:
             help_list.append(farbe.upper())
-        if new_color not in help_list:
-            print(f'Нельзя сменить цвет на {new_color}')
+        if new_color.upper() not in help_list:
+            print(f'\033[31mНельзя сменить цвет на {new_color}\033[0m')
         else:
-            self._color = new_color
+            self.__color = new_color
 
 
 class Sedan(Vehicle):
     __PASSENGERS_LIMIT = 5
+
+
 
 # Текущие цвета __COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white']
 vehicle1 = Sedan('Fedos', 'Toyota Mark II', 'blue', 500)
